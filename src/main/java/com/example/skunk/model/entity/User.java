@@ -1,4 +1,4 @@
-package com.example.skunk.model;
+package com.example.skunk.model.entity;
 
 import lombok.Data;
 
