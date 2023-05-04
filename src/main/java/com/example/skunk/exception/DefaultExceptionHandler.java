@@ -19,4 +19,15 @@ public class DefaultExceptionHandler {
 
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NoteNotFoundException.class)
+    public ResponseEntity<ApiError> noteNotFoundException(Exception e, HttpServletRequest request){
+        ApiError apiError = new ApiError(
+                request.getRequestURI(),
+                e.getMessage(),
+                HttpStatus.NOT_FOUND.value()
+        );
+        return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+
+    }
 }

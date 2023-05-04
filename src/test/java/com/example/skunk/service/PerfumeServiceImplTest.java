@@ -1,5 +1,6 @@
 package com.example.skunk.service;
 
+import com.example.skunk.exception.NoteNotFoundException;
 import com.example.skunk.model.DTO.CreatePerfumeDto;
 import com.example.skunk.model.entity.Note;
 import com.example.skunk.model.entity.Perfume;
@@ -7,6 +8,7 @@ import com.example.skunk.repository.NoteRepository;
 import com.example.skunk.repository.PerfumeRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -59,4 +61,26 @@ class PerfumeServiceImplTest {
         assertEquals(2, argument.getValue().getHeartNotes().size());
         assertEquals(2, argument.getValue().getBaseNotes().size());
     }
+
+    @Test
+    void createNoteNotFoundException() {
+        // given
+        CreatePerfumeDto createPerfumeDto = CreatePerfumeDto.builder()
+                .name("Test Perfume")
+                .brand("Test Brand")
+                .topNote(Arrays.asList("Top Note 1", "Top Note 2"))
+                .heartNote(Arrays.asList("Heart Note 1", "Heart Note 2"))
+                .baseNote(Arrays.asList("Base Note 1", "Base Note 2"))
+                .build();
+
+        when(noteRepository.findByName(anyString())).thenReturn(Optional.empty());
+
+        // when
+        Executable executable = () -> perfumeService.create(createPerfumeDto);
+
+        // then
+        NoteNotFoundException thrown = assertThrows(NoteNotFoundException.class, executable);
+        assertEquals("Note not found: Top Note 1", thrown.getMessage());
+    }
+
 }

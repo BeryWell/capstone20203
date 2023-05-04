@@ -16,7 +16,7 @@ public class NoteServiceImpl implements NoteService{
         Note note = Note.builder()
                 .name(name)
                 .build();
-
+        System.out.println(name);
         noteRepository.save(note);
     }
 
