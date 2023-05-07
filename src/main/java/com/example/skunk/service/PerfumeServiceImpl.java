@@ -7,10 +7,10 @@ import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.repository.NoteRepository;
 import com.example.skunk.repository.PerfumeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,13 +51,18 @@ public class PerfumeServiceImpl implements PerfumeService {
 
     @Override
     public List<Perfume> getPerfumesByName(String name) {
-        List<Perfume> perfumes = perfumeRepository.findAllByName(name);
-        return perfumes;
+        System.out.println(name);
+        return perfumeRepository.findAllByName(name);
     }
 
     @Override
-    public ResponseEntity getPerfume(Long id) {
-        return null;
+    public Perfume getPerfume(Long id) {
+        Optional<Perfume> perfume = perfumeRepository.findById(id);
+        return perfume.get();
+    }
+
+    public List<Perfume> allPerfume(){
+        return perfumeRepository.findAll();
     }
 
 

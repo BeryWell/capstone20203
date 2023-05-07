@@ -24,7 +24,7 @@ public class DefaultExceptionHandler {
     public ResponseEntity<ApiError> noteNotFoundException(Exception e, HttpServletRequest request){
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
-                e.getMessage(),
+                "Note Not Found",
                 HttpStatus.NOT_FOUND.value()
         );
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);

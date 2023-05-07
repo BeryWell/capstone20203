@@ -18,8 +18,6 @@ public class Perfume {
     private String name;
     @Column(name = "brand")
     private String brand;
-    @Column
-    private Gender gender;
 
     @ManyToMany
     private List<Note> topNotes;
@@ -27,4 +25,5 @@ public class Perfume {
     private List<Note> heartNotes;
     @ManyToMany
     private List<Note> baseNotes;
+
 }
