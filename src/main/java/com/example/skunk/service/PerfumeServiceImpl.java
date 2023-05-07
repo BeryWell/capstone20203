@@ -43,6 +43,7 @@ public class PerfumeServiceImpl implements PerfumeService {
                 .topNotes(topNote)
                 .heartNotes(heartNote)
                 .baseNotes(baseNote)
+                .imgUrl(createPerfumeDto.getImgUrl())
                 .build();
 
         perfumeRepository.save(perfume);
@@ -61,7 +62,7 @@ public class PerfumeServiceImpl implements PerfumeService {
         return perfume.get();
     }
 
-    public List<Perfume> allPerfume(){
+    public List<Perfume> allPerfume() {
         return perfumeRepository.findAll();
     }
 

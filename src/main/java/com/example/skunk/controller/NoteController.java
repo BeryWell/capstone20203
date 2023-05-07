@@ -1,16 +1,17 @@
 package com.example.skunk.controller;
 
 import com.example.skunk.model.DTO.CreateNoteDto;
+import com.example.skunk.model.DTO.CreatesNoteFromJsonDto;
 import com.example.skunk.service.NoteServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,5 +25,11 @@ public class NoteController {
         System.out.println(createNoteDto.getNote());
         noteService.createNote(createNoteDto.getNote());
         return ResponseEntity.ok().body(createNoteDto.getNote());
+    }
+
+    @PostMapping("/createAll")
+    public ResponseEntity createNotes(@RequestBody List<CreatesNoteFromJsonDto> createsNoteDto){
+        noteService.createNotesFromJson(createsNoteDto);
+        return ResponseEntity.ok().body("success!!");
     }
 }

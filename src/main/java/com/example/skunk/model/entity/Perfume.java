@@ -18,7 +18,6 @@ public class Perfume {
     private String name;
     @Column(name = "brand")
     private String brand;
-
     @ManyToMany
     private List<Note> topNotes;
     @ManyToMany
@@ -26,4 +25,6 @@ public class Perfume {
     @ManyToMany
     private List<Note> baseNotes;
 
+    @Column(name = "url")
+    private String imgUrl;
 }

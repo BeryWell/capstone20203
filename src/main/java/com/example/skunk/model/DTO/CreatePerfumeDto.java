@@ -16,11 +16,12 @@ public class CreatePerfumeDto {
     private List<String> topNote;
     private List<String> heartNote;
     private List<String> baseNote;
-
+    private String imgUrl;
      public Perfume toPerfume(){
          return Perfume.builder()
                  .name(name)
                  .brand(brand)
+                 .imgUrl(imgUrl)
                  .build();
      }
 }
