@@ -3,6 +3,8 @@ package com.example.skunk.controller;
 import com.example.skunk.model.DTO.CreatePerfumeDto;
 import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.service.PerfumeServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,11 @@ import java.util.Map;
 public class PerfumeController {
     private final PerfumeServiceImpl perfumeService;
 
+
+    @Operation(summary = "향수 이름으로 가져오기", description = "향수 이름으로 전부 가져오기\n" +
+            "List형으로 Json을 보내드립니다.")
     @GetMapping("/get_perfumes")
-    public ResponseEntity<Map<String, Object>> getPerfumes(@RequestParam("name") String name){
+    public ResponseEntity<Map<String, Object>> getPerfumes(@Parameter(description = "이름", required = true, example = "Blackberry & Bay Cologne") @RequestParam("name") String name){
         List<Perfume> perfumes = perfumeService.getPerfumesByName(name);
         System.out.println(perfumes);
         Map<String, Object> result = new HashMap<>();
@@ -26,11 +31,13 @@ public class PerfumeController {
         return ResponseEntity.ok().body(result);
     }
 
+    @Operation(summary = "향수 생성", description = "향수 DB에 Create")
     @PostMapping("/create")
     public ResponseEntity create(@RequestBody CreatePerfumeDto createPerfumeDto){
         perfumeService.create(createPerfumeDto);
         return ResponseEntity.ok().body(createPerfumeDto);
     }
+    @Operation(summary = "향수 전부 가져오기", description = "향수 DB에 있는 값들 전부 가져오기")
     @GetMapping("/findAll")
     public ResponseEntity findAll(){
         List<Perfume> allPerfume = perfumeService.allPerfume();

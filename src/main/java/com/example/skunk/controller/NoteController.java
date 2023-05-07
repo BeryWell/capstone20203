@@ -2,6 +2,7 @@ package com.example.skunk.controller;
 
 import com.example.skunk.model.DTO.CreateNoteDto;
 import com.example.skunk.service.NoteServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NoteController {
     private final NoteServiceImpl noteService;
 
+    @Operation(summary = "Note Create", description = "노트 생성")
     @PostMapping("/create")
     public ResponseEntity createNote(@RequestBody CreateNoteDto createNoteDto){
         System.out.println(createNoteDto.getNote());
