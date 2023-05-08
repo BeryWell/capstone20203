@@ -2,6 +2,7 @@ package com.example.skunk.controller;
 
 import com.example.skunk.model.DTO.CreateNoteDto;
 import com.example.skunk.model.DTO.CreatesNoteFromJsonDto;
+import com.example.skunk.model.entity.Note;
 import com.example.skunk.service.NoteServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -21,15 +22,16 @@ public class NoteController {
 
     @Operation(summary = "Note Create", description = "노트 생성")
     @PostMapping("/create")
-    public ResponseEntity createNote(@RequestBody CreateNoteDto createNoteDto){
+    public ResponseEntity createNote(@RequestBody CreateNoteDto createNoteDto) {
         System.out.println(createNoteDto.getNote());
-        noteService.createNote(createNoteDto.getNote());
+        noteService.createNote(createNoteDto);
         return ResponseEntity.ok().body(createNoteDto.getNote());
     }
 
     @PostMapping("/createAll")
-    public ResponseEntity createNotes(@RequestBody List<CreatesNoteFromJsonDto> createsNoteDto){
-        noteService.createNotesFromJson(createsNoteDto);
-        return ResponseEntity.ok().body("success!!");
+    public ResponseEntity createNotes(@RequestBody List<CreatesNoteFromJsonDto> createsNoteDto) {
+        List<Note> notes = noteService.createNotesFromJson(createsNoteDto);
+
+        return ResponseEntity.ok().body(notes);
     }
 }

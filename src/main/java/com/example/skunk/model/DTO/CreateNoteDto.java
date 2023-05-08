@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Setter
 public class CreateNoteDto {
     private String note;
+    private String korName;
 }

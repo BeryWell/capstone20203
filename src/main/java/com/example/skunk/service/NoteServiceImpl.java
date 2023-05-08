@@ -1,5 +1,6 @@
 package com.example.skunk.service;
 
+import com.example.skunk.model.DTO.CreateNoteDto;
 import com.example.skunk.model.DTO.CreatesNoteFromJsonDto;
 import com.example.skunk.model.entity.Note;
 import com.example.skunk.repository.NoteRepository;
@@ -7,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -16,11 +18,11 @@ public class NoteServiceImpl implements NoteService {
     private final NoteRepository noteRepository;
 
     @Override
-    public void createNote(String name) {
+    public void createNote(CreateNoteDto createNoteDto) {
         Note note = Note.builder()
-                .name(name)
+                .name(createNoteDto.getNote())
+                .korName(createNoteDto.getKorName())
                 .build();
-        System.out.println(name);
         noteRepository.save(note);
     }
 
@@ -30,17 +32,24 @@ public class NoteServiceImpl implements NoteService {
         return note.get();
     }
 
-    public List<String> createNotesFromJson(List<CreatesNoteFromJsonDto> createsNoteFromJsonDtoList) {
-        List<String> noteNames = createsNoteFromJsonDtoList.stream()
-                .map(dto -> dto.getFields().get("name"))
+    public List<Note> createNotesFromJson(List<CreatesNoteFromJsonDto> createsNoteFromJsonDtoList) {
+        List<Note> notes = createsNoteFromJsonDtoList.stream()
+                .map(dto -> {
+                    Map<String, String> fields = dto.getFields();
+                    String name = fields.get("name");
+                    String korName = fields.get("kor_name");
+                    return Note.builder()
+                            .name(name)
+                            .korName(korName)
+                            .build();
+                })
                 .collect(Collectors.toList());
-        System.out.println(noteNames);
 
-        List<Note> notes = noteNames.stream()
-                .map(name -> Note.builder().name(name).build())
-                .collect(Collectors.toList());
         noteRepository.saveAll(notes);
 
-        return noteNames;
+        return notes;
     }
+
+
+
 }

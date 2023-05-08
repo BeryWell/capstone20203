@@ -25,7 +25,6 @@ public class PerfumeController {
     @GetMapping("/get_perfumes")
     public ResponseEntity<Map<String, Object>> getPerfumes(@Parameter(description = "이름", required = true, example = "Blackberry & Bay Cologne") @RequestParam("name") String name){
         List<Perfume> perfumes = perfumeService.getPerfumesByName(name);
-        System.out.println(perfumes);
         Map<String, Object> result = new HashMap<>();
         result.put("data", perfumes);
         return ResponseEntity.ok().body(result);
