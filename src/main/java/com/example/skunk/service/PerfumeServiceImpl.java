@@ -28,17 +28,17 @@ public class PerfumeServiceImpl implements PerfumeService {
         List<Note> topNote = createPerfumeDto.getTopNote()
                 .stream()
                 .map(s -> noteRepository.findByName(s)
-                        .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
+                        .orElseThrow(() -> new NoteNotFoundException("Top Note not found: " + s)))
                 .collect(Collectors.toList());
         List<Note> heartNote = createPerfumeDto.getHeartNote()
                 .stream()
                 .map(s -> noteRepository.findByName(s)
-                        .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
+                        .orElseThrow(() -> new NoteNotFoundException("Heart Note not found: " + s)))
                 .collect(Collectors.toList());
         List<Note> baseNote = createPerfumeDto.getBaseNote()
                 .stream()
                 .map(s -> noteRepository.findByName(s)
-                        .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
+                        .orElseThrow(() -> new NoteNotFoundException("Base Note not found: " + s)))
                 .collect(Collectors.toList());
 
         Perfume perfume = Perfume.builder()

@@ -11,7 +11,7 @@ import java.lang.module.ResolutionException;
 @RestControllerAdvice
 public class DefaultExceptionHandler {
     @ExceptionHandler(ResolutionException.class)
-    public ResponseEntity<ApiError> handleException(Exception e, HttpServletRequest request){
+    public ResponseEntity<ApiError> handleException(Exception e, HttpServletRequest request) {
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -21,13 +21,16 @@ public class DefaultExceptionHandler {
     }
 
     @ExceptionHandler(NoteNotFoundException.class)
-    public ResponseEntity<ApiError> noteNotFoundException(Exception e, HttpServletRequest request){
+    public ResponseEntity<ApiError> noteNotFoundException(Exception e, HttpServletRequest request) {
+//        System.out.println("NoteNotFoundException 발생");
         ApiError apiError = new ApiError(
                 request.getRequestURI(),
-                "Note Not Found",
+                e.getMessage(),
                 HttpStatus.NOT_FOUND.value()
         );
+//        System.out.println(apiError.getMessage());
         return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
-
     }
+
+
 }
