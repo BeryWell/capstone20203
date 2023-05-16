@@ -1,6 +1,8 @@
 package com.example.skunk.controller;
 
+import com.example.skunk.model.DTO.CreateBrandFromJson;
 import com.example.skunk.model.DTO.CreatesNoteFromJsonDto;
+import com.example.skunk.model.entity.Brand;
 import com.example.skunk.model.entity.Note;
 import com.example.skunk.service.BrandServiceImpl;
 import com.example.skunk.service.NoteServiceImpl;
@@ -29,8 +31,9 @@ public class CreateFromJsonController {
     }
 
     @PostMapping("/brand")
-    public ResponseEntity createBrands(){
-        return null;
+    public ResponseEntity createBrands(@RequestBody List<CreateBrandFromJson> createBrandFromJsonList){
+        List<Brand> brands = brandService.createBrandFromJson(createBrandFromJsonList);
+        return ResponseEntity.ok().body(brands);
     }
 
     @PostMapping("/perfume")

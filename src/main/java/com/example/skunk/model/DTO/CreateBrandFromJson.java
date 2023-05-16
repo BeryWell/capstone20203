@@ -6,13 +6,17 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-
 public class CreateBrandFromJson {
     private Long pk;
     private String model;
-    private Map<String, String> fields;
+    private Fields fields;
 
-    public String getName(){
-        return fields.get("name");
+
+    @Getter
+    public static class Fields {
+        private String name;
+        private String brand;
+
+
     }
 }

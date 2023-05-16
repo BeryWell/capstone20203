@@ -19,7 +19,7 @@ public class BrandServiceImpl implements BrandService{
         List<Brand> brandList = createBrandFromJson.stream()
                 .map(dto -> {
                     Brand brand = Brand.builder()
-                            .name(dto.getName())
+                            .name(dto.getFields().getName())
                             .build();
                     brandRepository.save(brand);
                     return brand;
