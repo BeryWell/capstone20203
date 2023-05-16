@@ -27,11 +27,4 @@ public class NoteController {
         noteService.createNote(createNoteDto);
         return ResponseEntity.ok().body(createNoteDto.getNote());
     }
-
-    @PostMapping("/createAll")
-    public ResponseEntity createNotes(@RequestBody List<CreatesNoteFromJsonDto> createsNoteDto) {
-        List<Note> notes = noteService.createNotesFromJson(createsNoteDto);
-
-        return ResponseEntity.ok().body(notes);
-    }
 }

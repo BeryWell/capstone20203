@@ -2,6 +2,7 @@ package com.example.skunk.service;
 
 import com.example.skunk.exception.NoteNotFoundException;
 import com.example.skunk.model.DTO.CreatePerfumeDto;
+import com.example.skunk.model.DTO.CreatePerfumeFromJsonDto;
 import com.example.skunk.model.entity.Note;
 import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.repository.NoteRepository;
@@ -15,7 +16,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -83,4 +86,9 @@ class PerfumeServiceImplTest {
         assertEquals("Note not found: Top Note 1", thrown.getMessage());
     }
 
+    @Test
+    void createPerfumeFromJson() {
+
+
+    }
 }

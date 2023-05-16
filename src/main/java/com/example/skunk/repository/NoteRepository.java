@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface NoteRepository extends JpaRepository<Note, Long> {
     Optional<Note> findByName(String name);
-
+    Optional<Note> findByNameOrKorName(String name, String korName);
 }
