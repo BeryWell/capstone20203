@@ -17,15 +17,15 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(true) // Swagger 에서 제공해주는 기본 응답 코드 (200, 401, 403, 404) 등의 노출 여부
                 .apiInfo(apiInfo()) // Swagger UI 로 노출할 정보
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.spring.practice.rest")) // api 스펙이 작성되어 있는 패키지 (controller)
+                .apis(RequestHandlerSelectors.basePackage("com.example.skunk.controller")) // api 스펙이 작성되어 있는 패키지 (controller)
                 .paths(PathSelectors.any()) // apis 에 위치하는 API 중 특정 path 를 선택
                 .build();
     }
 
     public ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("SpringBoot Practice Rest API Documentation")
-                .description("springboot rest api practice.")
+                .title("FitFume API Document")
+                .description("캡스톤3 FitFume API Document")
                 .version("0.1")
                 .build();
     }

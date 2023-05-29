@@ -1,16 +1,28 @@
 package com.example.skunk.controller;
 
-import org.springframework.http.HttpStatus;
+import com.example.skunk.auth.AuthenticationRequest;
+import com.example.skunk.auth.RegisterRequest;
+import com.example.skunk.model.response.AuthenticationResponse;
+import com.example.skunk.service.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/api/auth")
+@RestController
+@RequestMapping("api/v1/auth")
+@RequiredArgsConstructor
 public class AuthenticationController {
-    @PostMapping("/signup")
-    public ResponseEntity signup(){
-        return new ResponseEntity(HttpStatus.OK);
+    private final AuthService authService;
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(authService.register(request));
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody  AuthenticationRequest request) {
+        return ResponseEntity.ok(authService.authenticate(request));
     }
 }
