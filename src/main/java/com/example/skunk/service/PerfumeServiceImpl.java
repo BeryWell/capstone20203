@@ -3,7 +3,6 @@ package com.example.skunk.service;
 import com.example.skunk.exception.NoteNotFoundException;
 import com.example.skunk.model.DTO.CreatePerfumeDto;
 import com.example.skunk.model.DTO.CreatePerfumeFromJsonDto;
-import com.example.skunk.model.DTO.PerfumeFromJsonDetailDto;
 import com.example.skunk.model.entity.Note;
 import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.repository.BrandRepository;
@@ -70,31 +69,31 @@ public class PerfumeServiceImpl implements PerfumeService {
     public List<Perfume> createPerfumeFromJson(List<CreatePerfumeFromJsonDto> createPerfumeFromJsonDtoList) {
         List<Perfume> perfumeList = createPerfumeFromJsonDtoList.stream()
                 .map(createPerfumeFromJsonDto -> {
-                    List<Note> topNote = createPerfumeFromJsonDto.getPerfumeFromJsonDetailDto().getTop_notes()
+                    List<Note> topNote = createPerfumeFromJsonDto.getFields().getTop_notes()
                             .stream()
                             .map(s -> noteRepository.findById(s)
                                     .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
                             .collect(Collectors.toList());
-                    List<Note> heartNote = createPerfumeFromJsonDto.getPerfumeFromJsonDetailDto().getHeart_notes()
+                    List<Note> heartNote = createPerfumeFromJsonDto.getFields().getHeart_notes()
                             .stream()
                             .map(s -> noteRepository.findById(s)
                                     .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
                             .collect(Collectors.toList());
-                    List<Note> baseNote = createPerfumeFromJsonDto.getPerfumeFromJsonDetailDto().getHeart_notes()
+                    List<Note> baseNote = createPerfumeFromJsonDto.getFields().getHeart_notes()
                             .stream()
                             .map(s -> noteRepository.findById(s)
                                     .orElseThrow(() -> new NoteNotFoundException("Note not found: " + s)))
                             .collect(Collectors.toList());
 
-                    String brandName = brandRepository.findById(createPerfumeFromJsonDto.getPerfumeFromJsonDetailDto().getBrand()).get().getName();
+                    String brandName = brandRepository.findById(createPerfumeFromJsonDto.getFields().getBrand()).get().getName();
 
                     Perfume perfume = Perfume.builder()
-                            .name(createPerfumeFromJsonDto.getModel())
+                            .name(createPerfumeFromJsonDto.getFields().getName())
                             .brand(brandName)
                             .topNotes(topNote)
                             .heartNotes(heartNote)
                             .baseNotes(baseNote)
-                            .imgUrl(createPerfumeFromJsonDto.getPerfumeFromJsonDetailDto().getThumbnail())
+                            .imgUrl(createPerfumeFromJsonDto.getFields().getThumbnail())
                             .build();
 
                     perfumeRepository.save(perfume);

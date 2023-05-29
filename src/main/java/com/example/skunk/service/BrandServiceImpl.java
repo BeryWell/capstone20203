@@ -1,7 +1,6 @@
 package com.example.skunk.service;
 
-import com.example.skunk.model.DTO.CreateBrandDto;
-import com.example.skunk.model.DTO.CreateBrandFromJson;
+ import com.example.skunk.model.DTO.CreateBrandFromJson;
 import com.example.skunk.model.entity.Brand;
 import com.example.skunk.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
