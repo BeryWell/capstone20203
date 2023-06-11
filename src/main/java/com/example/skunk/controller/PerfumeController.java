@@ -3,8 +3,10 @@ package com.example.skunk.controller;
 import com.example.skunk.model.DTO.CreatePerfumeDto;
 import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.service.PerfumeServiceImpl;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api(tags = "향수", description = "향수 관련 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/perfume")

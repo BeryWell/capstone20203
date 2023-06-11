@@ -24,10 +24,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
+                .antMatchers("api/review/create", "api/review/delete/**").authenticated()
                 .antMatchers("/api/v1/auth/**", "/api/**", "/swagger-ui/**")
                 .permitAll()
                 .antMatchers("/swagger-resources/**", "/v3/api-docs/**").permitAll()
-
                 .anyRequest()
                 .authenticated()
                 .and()

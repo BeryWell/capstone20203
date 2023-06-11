@@ -1,0 +1,12 @@
+###
+POST http://localhost:8080/api/perfume/create
+Content-Type: application/json
+
+{
+  "name": "test Perfume",
+  "brand": "just brand",
+  "topNote": [],
+  "heartNote": [],
+  "baseNote": [],
+  "imgUrl": "https://cdn.shopify.com/s/files/1/0592/6181/2894/products/3348901571432_0.jpg?v=1663826265"
+}

@@ -1,5 +1,6 @@
 package com.example.skunk.model.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+@Schema(description = "사용자")
 @Entity
 @Table(name = "`user`")
 @Data
@@ -30,9 +32,6 @@ public class User implements UserDetails {
 
     @Column(name = "password", length = 100)
     private String password;
-
-    @Column(name = "nickname", length = 50)
-    private String nickname;
 
     private Gender gender;
 
