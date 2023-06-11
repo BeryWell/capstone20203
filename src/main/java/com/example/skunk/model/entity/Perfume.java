@@ -1,10 +1,12 @@
 package com.example.skunk.model.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Schema(description = "향수")
 @Entity
 @Data
 @Builder
@@ -12,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Perfume {
     @Id
+    @Column(name = "perfume_id")
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")

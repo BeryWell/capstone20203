@@ -10,8 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.Filter;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -26,8 +24,10 @@ public class SecurityConfig {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/auth/**", "/api/**")
+                .antMatchers("api/review/create", "api/review/delete/**").authenticated()
+                .antMatchers("/api/v1/auth/**", "/api/**", "/swagger-ui/**")
                 .permitAll()
+                .antMatchers("/swagger-resources/**", "/v3/api-docs/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -40,4 +40,6 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
 }

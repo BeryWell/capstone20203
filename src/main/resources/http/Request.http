@@ -1,0 +1,141 @@
+### Note create
+POST http://localhost:8080/api/note/create
+Content-Type: application/json
+
+{
+  "note": "test123"
+}
+
+###
+POST http://localhost:8080/api/perfume/create
+Content-Type: application/json
+
+{
+  "name": "test Perfume",
+  "brand": "just brand",
+  "topNote": ["test123"],
+  "heartNote": [],
+  "baseNote": [],
+  "imgUrl": "https://cdn.shopify.com/s/files/1/0592/6181/2894/products/3348901571432_0.jpg?v=1663826265"
+}
+
+###
+POST http://localhost:8080/api/create/json/brand
+Content-Type:application/json
+
+[
+  {
+    "pk": 1,
+    "model": "perfumes.brand",
+    "fields": {
+      "name": "& Other Stories",
+      "logo_image": null
+    }
+  },
+  {
+    "pk": 2,
+    "model": "perfumes.brand",
+    "fields": {
+      "name": "06130 Zéro Six Cent-Trente",
+      "logo_image": null
+    }
+  }
+]
+
+###
+POST http://localhost:8080/api/create/json/note
+
+###
+POST http://localhost:8080/api/create/json/perfume
+
+###
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "email": "testEmail",
+  "password": "test123"
+}
+
+
+###
+POST http://localhost:8080/api/v1/auth/authenticate
+Content-Type: application/json
+
+{
+  "email": "testEmail",
+  "password": "test123"
+}
+
+<> 2023-06-11T153122.200.json
+
+
+###
+GET http://localhost:8080/api/v1/auth/get_claims
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0RW1haWwiLCJpYXQiOjE2ODYwNDI2NDIsImV4cCI6MTY4NjA0NjI0Mn0.apw2FsZTcnJPc_fsgtht0caruKvk3mC4KcScAogluV8
+
+###
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "test",
+  "email": "testEmail",
+  "password": "test123"
+}
+
+<> 2023-06-11T153052.404.json
+<> 2023-06-09T165101.200.json
+<> 2023-06-09T163148.200.json
+<> 2023-06-09T162813.200.json
+<> 2023-06-09T162448.200.json
+<> 2023-06-09T155900.200.json
+<> 2023-06-09T155527.200.json
+<> 2023-06-09T155159.200.json
+<> 2023-06-09T155038.200.json
+<> 2023-06-09T024641.200.json
+<> 2023-06-09T024429.200.json
+<> 2023-06-09T023859.200.json
+<> 2023-06-09T023819.200.json
+<> 2023-06-09T023717.200.json
+<> 2023-06-09T023257.200.json
+
+
+###
+POST http://localhost:8080/api/routine/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0RW1haWwiLCJpYXQiOjE2ODYyOTcwNjMsImV4cCI6MTY4NjMwMDY2M30.UIgP3mhB5z6LmYmybnVSq2EBHxT3WLT1C7wfzYg8aag
+
+{
+  "title": "Morning Routine",
+  "description": "Start the day with a productive routine",
+  "todos": [
+    {
+      "title": "Exercise",
+      "description": "Do some stretching and cardio",
+      "startTime": "08:00",
+      "endTime": "08:30"
+    },
+    {
+      "title": "Meditation",
+      "description": "Practice mindfulness and meditation",
+      "startTime": "08:30",
+      "endTime": "09:00"
+    }
+  ]
+}
+
+
+
+###
+GET http://localhost:8080/api/routine/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0RW1haWwiLCJpYXQiOjE2ODYyOTU2OTYsImV4cCI6MTY4NjI5OTI5Nn0.imggUEq3mSZFQ7UeOP_5Tr3c8RgH06BEgQJ82yek2fA
+
+###
+GET http://localhost:8080/api/review/getall
+
+{
+
+}

@@ -1,5 +1,6 @@
 package com.example.skunk.auth;
 
+import com.example.skunk.model.entity.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +14,5 @@ public class RegisterRequest {
     private String username;
     private String email;
     private String password;
+    private Gender gender;
 }

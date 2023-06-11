@@ -10,15 +10,20 @@ import com.example.skunk.model.entity.Perfume;
 import com.example.skunk.service.BrandServiceImpl;
 import com.example.skunk.service.NoteServiceImpl;
 import com.example.skunk.service.PerfumeServiceImpl;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 
+@ApiIgnore
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/create/json")
